@@ -1,5 +1,4 @@
-const link = 'https://play.typeracer.com//?rt=4csmlbjk0';
-// const link = 'https://play.typeracer.com'
+const link = 'https://play.typeracer.com';
 import puppeteer, { ElementHandle } from 'puppeteer';
 const scrape = async () => {
   const browser = await puppeteer.launch({
@@ -22,11 +21,11 @@ const scrape = async () => {
     await disagreeButton?.click();
 
     //! click enter race button
-    // await page.waitForXPath("//a[text()='Enter a Typing Race']");
-    // const [enterRaceButton] = await page.$x(
-    //   "//a[text()='Enter a Typing Race']"
-    // );
-    // await (enterRaceButton as ElementHandle<HTMLElement>).click();
+    await page.waitForXPath("//a[text()='Enter a Typing Race']");
+    const [enterRaceButton] = await page.$x(
+      "//a[text()='Enter a Typing Race']"
+    );
+    await (enterRaceButton as ElementHandle<HTMLElement>).click();
 
     //! get text
     await page.waitForSelector('[unselectable="on"]');
@@ -42,20 +41,14 @@ const scrape = async () => {
     // //! click input field
     await page.waitForSelector('[title="Time remaining"]');
     //* if you dont want to be disqualified use line below
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(5000);
 
     await page.waitForXPath(
-      '//*[@id="gwt-uid-22"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
+      '//*[@id="gwt-uid-20"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
     );
     const [raceInput] = await page.$x(
-      '//*[@id="gwt-uid-22"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
+      '//*[@id="gwt-uid-20"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
     );
-    // await page.waitForXPath(
-    //   '//*[@id="gwt-uid-20"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
-    // );
-    // const [raceInput] = await page.$x(
-    //   '//*[@id="gwt-uid-20"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
-    // );
     await (raceInput as ElementHandle<HTMLElement>).click();
 
     //! type text
