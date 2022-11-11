@@ -1,7 +1,8 @@
-const link = 'https://play.typeracer.com//?rt=4csmlbjk0';
+const link = 'https://play.typeracer.com?rt=h1ynjebjw';
+
 // const link = 'https://play.typeracer.com'
 import puppeteer, { ElementHandle } from 'puppeteer';
-const scrape = async () => {
+const scrape = async (): Promise<void> => {
   const browser = await puppeteer.launch({
     headless: false,
     args: ['--start-maximized'],
@@ -17,7 +18,7 @@ const scrape = async () => {
   );
   await page.goto(link);
   try {
-    //! click dissagree button
+    //! click disagree button
     const disagreeButton = await page.$('.css-1hy2vtq');
     await disagreeButton?.click();
 

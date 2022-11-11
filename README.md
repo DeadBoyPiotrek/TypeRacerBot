@@ -13,9 +13,9 @@
 ```
 git clone https://github.com/DeadBoyPiotrek/TypeRacerBot.git
 
-npm i
-
 git switch race-vs-friends
+
+npm i
 
 npm run imSpeed
 ```
