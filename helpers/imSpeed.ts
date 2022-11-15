@@ -41,7 +41,7 @@ export const scrape = async (url: string): Promise<void> => {
     // //! click input field
     await page.waitForSelector('[title="Time remaining"]');
     //* if you dont want to be disqualified use line below
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(2000);
 
     await page.waitForXPath(
       '//*[@id="gwt-uid-22"]/table/tbody/tr[2]/td/table/tbody/tr[2]/td/input'
