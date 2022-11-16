@@ -20,14 +20,18 @@ const Modal = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Put ur seat bels on</h1>
+        <h1 className={styles.title}>
+          <span className={styles.title}>🏁</span>
+          Put ur seat bels on
+        </h1>
         <form onSubmit={raceHandler}>
           <input
-            placeholder="enter race url"
+            placeholder="enter lobby url"
             value={url}
             onChange={e => setUrl(e.target.value)}
           />
-          <button type="submit">lets race 🏎️</button>
+          <span>AND</span>
+          <button type="submit"> race </button>
         </form>
       </div>
     </div>
