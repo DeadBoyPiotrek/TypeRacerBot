@@ -11,8 +11,7 @@ export default async function handler(
 ) {
   // json to string
   const { url } = JSON.parse(req.body);
-  // console.log('url', url);
-  // console.log('scraping');
+
   await scrape(url);
   res.status(200).json({ name: 'John Doe' });
 }

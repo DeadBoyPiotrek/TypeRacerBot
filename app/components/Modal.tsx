@@ -24,6 +24,21 @@ const Modal = () => {
   const mouseY = useMotionValue(0);
   const rotateX = useTransform(mouseY, [-250, 250], [-10, 10]);
   const rotateY = useTransform(mouseX, [-165, 165], [10, -10]);
+
+  const [xGradient, setXGradient] = useState(0);
+  const [yGradient, setYGradient] = useState(0);
+  // function that transforms one range of numbers to another
+  const map = (
+    value: number,
+    in_min: number,
+    in_max: number,
+    out_min: number,
+    out_max: number
+  ) => {
+    return (
+      ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    );
+  };
   return (
     <div className={styles.wrapper}>
       <motion.div
@@ -32,17 +47,26 @@ const Modal = () => {
         style={{ rotateX, rotateY, z: 100 }}
         onPointerMove={e => {
           mouseX.set(e.clientX - bounds.x - bounds.width / 2);
-          console.log('x', e.clientX - bounds.x - bounds.width / 2);
+          setXGradient(
+            map(e.clientX - bounds.x - bounds.width / 2, -165, 165, 0, 100)
+          );
+          setYGradient(
+            map(e.clientY - bounds.y - bounds.height / 2, -250, 250, 0, 100)
+          );
           mouseY.set(e.clientY - bounds.y - bounds.height / 2);
-          console.log('y', e.clientY - bounds.y - bounds.height / 2);
         }}
         onHoverEnd={() => {
-          console.log('hover end');
           mouseX.set(0);
           mouseY.set(0);
+          setXGradient(0);
+          setYGradient(0);
         }}
         animate={{
-          gradientTransform: ['rotate(0deg)', 'rotate(360deg)'],
+          background: `radial-gradient(
+            at ${xGradient}% ${yGradient}%,
+            #8EC5FC 10%,
+            rgba(63, 94, 251, 1) 100%
+          )`,
         }}
       >
         <h1 className={styles.title}>
@@ -69,6 +93,7 @@ const Modal = () => {
           <button type="submit"> race </button>
         </form>
       </motion.div>
+      {/* <div className={styles.test} /> */}
     </div>
   );
 };
